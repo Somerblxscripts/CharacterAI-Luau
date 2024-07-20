@@ -1,6 +1,6 @@
 local TOKEN = getfenv().YourToken
 repeat wait() until game:IsLoaded();
-local CharacterAI = loadstring(game:HttpGet('https://raw.githubusercontent.com/ElWapoteDev/CharacterAI-Luau/main/Module/CharacterAI.lua', true))(); 
+local CharacterAI = loadstring(game:HttpGet('https://raw.githubusercontent.com/Somerblxscripts/CharacterAI-Luau/main/Module/CharacterAI.lua', true))(); 
 local MySession = CharacterAI.new(TOKEN)
 
 if (game:GetService("CoreGui"):FindFirstChild('CharacterAIA')) then
@@ -826,7 +826,7 @@ function SetIcon(url, fileName)
 	return Image
 end;
 
-local loguituwu = SetIcon("https://beta.character.ai/static/media/logo-dark.77b3a5cc8e42a91f021f.png", "LogoPrincipal412");
+local loguituwu = SetIcon("https://old.character.ai/static/media/logo-dark.77b3a5cc8e42a91f021f.png", "LogoPrincipal412");
 Logo.Image = loguituwu;
 Log.Image = loguituwu;
 
