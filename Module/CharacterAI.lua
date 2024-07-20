@@ -187,7 +187,7 @@ function CharacterAI:HTTPRequest(url: string, metodo: string, cuerpo: any, OnlyB
 end;
 
 function SesionGuest()
-	local Url = 'https://beta.character.ai/chat/auth/lazy/';
+	local Url = 'https://old.character.ai/chat/auth/lazy/';
 	local uuid = Http:GenerateGUID();
 
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'POST', {
@@ -202,7 +202,7 @@ function SesionGuest()
 end;
 
 function VerifyToken(Token)
-	local Url = 'https://beta.character.ai/chat/characters/recent/'
+	local Url = 'https://old.character.ai/chat/characters/recent/'
 
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true)
 	if (Respuesta['Status'] == false) then
@@ -456,14 +456,14 @@ function CharacterAI.new(Token)
 end;
 
 function CharacterAI:GetCategories()
-	local Url = 'https://beta.character.ai/chat/character/categories/'
+	local Url = 'https://old.character.ai/chat/character/categories/'
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true)
 
 	return Respuesta
 end
 
 function CharacterAI:UserIsInWaitlist()
-	local Url = 'https://beta.character.ai/chat/config/';
+	local Url = 'https://old.character.ai/chat/config/';
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true);
 
 	if (Respuesta['Status'] == false) then
@@ -493,7 +493,7 @@ function CharacterAI:IsOnline()
 end;
 
 function CharacterAI:GetMainPageCharacters()
-	local Url = 'https://beta.character.ai/chat/curated_categories/characters/';
+	local Url = 'https://old.character.ai/chat/curated_categories/characters/';
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true);
 
 	if (Respuesta['Status'] == false) then
@@ -527,7 +527,7 @@ function CharacterAI:GetMainPageCharacters()
 end
 
 function CharacterAI:GetTrendingCharacters()
-	local Url = 'https://beta.character.ai/chat/characters/trending/';
+	local Url = 'https://old.character.ai/chat/characters/trending/';
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true);
 
 	if (Respuesta['Status'] == false) then
@@ -558,7 +558,7 @@ function CharacterAI:GetTrendingCharacters()
 end;
 
 function CharacterAI:GetFeaturedCharacters()
-	local Url = 'https://beta.character.ai/chat/characters/featured_v2/';
+	local Url = 'https://old.character.ai/chat/characters/featured_v2/';
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true);
 
 	if (Respuesta['Status'] == false) then
@@ -589,7 +589,7 @@ function CharacterAI:GetFeaturedCharacters()
 end;
 
 function CharacterAI:GetRecommendedCharacters()
-	local Url = 'https://beta.character.ai/chat/characters/recommended/';
+	local Url = 'https://old.character.ai/chat/characters/recommended/';
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true);
 
 	if (Respuesta['Status'] == false) then
@@ -620,7 +620,7 @@ function CharacterAI:GetRecommendedCharacters()
 end;
 
 function CharacterAI:GetUserCharacters()
-	local Url = 'https://beta.character.ai/chat/characters/?scope=user';
+	local Url = 'https://old.character.ai/chat/characters/?scope=user';
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true);
 
 	if (Respuesta['Status'] == false) then
@@ -651,7 +651,7 @@ function CharacterAI:GetUserCharacters()
 end;
 
 function CharacterAI:GetRecentCharacters()
-	local Url = 'https://beta.character.ai/chat/characters/recent/';
+	local Url = 'https://old.character.ai/chat/characters/recent/';
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true);
 
 	if (Respuesta['Status'] == false) then
@@ -686,7 +686,7 @@ function CharacterAI:SearchCharacters(Query)
 	if (Query == nil) then 
 		return GenerarStatus(false, 'No query provided')
 	end
-	local Url = 'https://beta.character.ai/chat/characters/search/?query='..Http:UrlEncode(Query);
+	local Url = 'https://old.character.ai/chat/characters/search/?query='..Http:UrlEncode(Query);
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true);
 
 	if (Respuesta['Status'] == false) then
@@ -722,7 +722,7 @@ end;
 
 function CharacterAI:GetCharacterByExternalId(external_character_id)
 	MiAssert(external_character_id, 'No external character id provided');
-	local Url = 'https://beta.character.ai/chat/character/info-cached/'..external_character_id..'/';
+	local Url = 'https://old.character.ai/chat/character/info-cached/'..external_character_id..'/';
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true);
 
 	if (Respuesta['Status'] == false) then
@@ -736,7 +736,7 @@ function CharacterAI:GetCharacterByExternalId(external_character_id)
 end;
 
 function CharacterAI:GetUserInfo()
-	local Url = 'https://beta.character.ai/chat/user/';
+	local Url = 'https://old.character.ai/chat/user/';
 
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'GET', nil, true);
 
@@ -761,7 +761,7 @@ function CharacterAI:NewChat(char_external_id)
 		return GenerarStatus(false, 'Invalid external id provided')
 	end;
 
-	local Url = 'https://beta.character.ai/chat/history/create/';
+	local Url = 'https:/old.character.ai/chat/history/create/';
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'POST', {
 		['character_external_id'] = char_external_id
 	}, true);
@@ -775,7 +775,7 @@ function CharacterAI:SendMessage(char_external_id, history_external_id, internal
 	MiAssert(internal_id, 'No internal_id provided');
 	MiAssert(Text, 'No Text provided');
 
-	local Url = 'https://beta.character.ai/chat/streaming/'
+	local Url = 'https://old.character.ai/chat/streaming/'
 	local Respuesta = CharacterAI:HTTPRequest(Url, 'POST', {
 		history_external_id = history_external_id,
 		character_external_id = char_external_id,
